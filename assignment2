@@ -29,4 +29,30 @@ console.log(sum); // Output: 15
 Task 3: Use filter to find all prime numbers in an array.
 Write a JavaScript function that takes an array of numbers as input and returns a new array containing only the prime numbers.
 
+function findPrimes(numbers) {
+   
+    function isPrime(num) {
+        if (num <= 1) return false;  // 1 and below are not prime numbers
+        if (num <= 3) return true;   // 2 and 3 are prime numbers
+        if (num % 2 === 0 || num % 3 === 0) return false;  // multiples of 2 and 3 are not prime
+        
+        // Check for prime numbers up to sqrt(num)
+        for (let i = 5; i * i <= num; i += 6) {
+            if (num % i === 0 || num % (i + 2) === 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    // Use filter to create a new array with only prime numbers
+    return numbers.filter(num => isPrime(num));
+}
+
+// Example usage:
+let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+let primes = findPrimes(numbers);
+console.log(primes); // Output: [2, 3, 5, 7]
+
+
 
