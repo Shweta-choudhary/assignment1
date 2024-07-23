@@ -119,3 +119,23 @@ function capitalizeFirstLetter(sentence) {
 let sentence = "hello world, how are you?";
 let capitalized = capitalizeFirstLetter(sentence);
 console.log(capitalized); // Output: "Hello World, How Are You?"
+
+Task 7: Use filter to find all students who passed the exam.
+Write a JavaScript function that takes an array of student objects (with properties name and score) as input and returns an array containing only the students who passed the exam (scored 60 or above).
+
+function findPassedStudents(students) {
+    // Use filter to find students who passed the exam (scored 60 or above)
+    return students.filter(student => student.score >= 60);
+}
+
+// Example usage:
+let students = [
+    { name: "Alice", score: 75 },
+    { name: "Bob", score: 45 },
+    { name: "Charlie", score: 60 },
+    { name: "David", score: 30 },
+    { name: "Emily", score: 80 }
+];
+let passedStudents = findPassedStudents(students);
+console.log(passedStudents);
+
