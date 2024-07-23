@@ -55,4 +55,28 @@ let primes = findPrimes(numbers);
 console.log(primes); // Output: [2, 3, 5, 7]
 
 
+Task 4: Use map, reduce, and filter to calculate the average of squared odd numbers in an array.
+Write a JavaScript function that takes an array of numbers as input and calculates the average of the squares of all odd numbers in the array.
+
+function averageOfSquaredOddNumbers(numbers) {
+    // Filter odd numbers, square them, then calculate average
+    let oddNumbersSquared = numbers
+        .filter(num => num % 2 !== 0)  // Filter out odd numbers
+        .map(num => num ** 2);          // Square each odd number
+    
+    if (oddNumbersSquared.length === 0) {
+        return 0; // Return 0 if there are no odd numbers in the array
+    }
+
+    // Calculate average using reduce
+    let sum = oddNumbersSquared.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    let average = sum / oddNumbersSquared.length;
+    
+    return average;
+}
+
+// Example usage:
+let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+let result = averageOfSquaredOddNumbers(numbers);
+console.log(result); // Output: 25 // Explanation: Squares of odd numbers: [1, 9, 25, 49, 81]. Average = (1 + 9 + 25 + 49 + 81) / 5 = 25
 
