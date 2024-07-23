@@ -139,3 +139,122 @@ let students = [
 let passedStudents = findPassedStudents(students);
 console.log(passedStudents);
 
+
+Task 8: Create a Private Counter for Multiple Instances
+Write a closure-based function that creates multiple instances of a private counter. Each instance should have its own count, independent of the others. For example:
+
+const counter1 = createInstanceCounter();
+const counter2 = createInstanceCounter();
+
+console.log(counter1()); // Output: 1
+console.log(counter1()); // Output: 2
+console.log(counter2()); // Output: 1
+console.log(counter2()); // Output: 2
+
+
+function createInstanceCounter() {
+    let count = 0;  // Private variable to hold the count for each instance
+    
+    // Return a function that, when called, increments and returns the count
+    return function() {
+        count++;
+        return count;
+    };
+}
+
+// Example usage:
+const counter1 = createInstanceCounter();
+const counter2 = createInstanceCounter();
+
+console.log(counter1()); // Output: 1
+console.log(counter1()); // Output: 2
+console.log(counter2()); // Output: 1
+console.log(counter2()); // Output: 2
+
+
+Task 9: Create a Promise-Based Calculator
+Write a Promise-based calculator that takes two numbers and an operation (addition, subtraction, multiplication, or division) as input. Perform the corresponding operation and resolve the Promise with the result. Handle division by zero and any invalid operations by rejecting the Promise with an appropriate error message.
+
+function calculator(num1, num2, operation) {
+    return new Promise((resolve, reject) => {
+        // Validate operation
+        if (typeof num1 !== 'number' || typeof num2 !== 'number') {
+            reject("Please provide valid numbers for calculation.");
+        } else if (operation !== 'add' && operation !== 'subtract' && operation !== 'multiply' && operation !== 'divide') {
+            reject("Invalid operation. Supported operations are 'add', 'subtract', 'multiply', 'divide'.");
+        } else {
+            // Perform operation
+            switch (operation) {
+                case 'add':
+                    resolve(num1 + num2);
+                    break;
+                case 'subtract':
+                    resolve(num1 - num2);
+                    break;
+                case 'multiply':
+                    resolve(num1 * num2);
+                    break;
+                case 'divide':
+                    if (num2 === 0) {
+                        reject("Division by zero is not allowed.");
+                    } else {
+                        resolve(num1 / num2);
+                    }
+                    break;
+                default:
+                    reject("Something went wrong. Please try again later.");
+                    break;
+            }
+        }
+    });
+}
+
+// Example usage:
+calculator(10, 5, 'add')
+    .then(result => console.log("Addition Result:", result)) // Output: 15
+    .catch(error => console.log("Error:", error));
+
+calculator(10, 5, 'subtract')
+    .then(result => console.log("Subtraction Result:", result)) // Output: 5
+    .catch(error => console.log("Error:", error));
+
+calculator(10, 5, 'multiply')
+    .then(result => console.log("Multiplication Result:", result)) // Output: 50
+    .catch(error => console.log("Error:", error));
+
+calculator(10, 0, 'divide')
+    .then(result => console.log("Division Result:", result)) // Output: Error: Division by zero is not allowed.
+    .catch(error => console.log("Error:", error));
+
+calculator(10, 5, 'unknown')
+    .then(result => console.log("Result:", result))
+    .catch(error => console.log("Error:", error)); // Output: Error: Invalid operation. Supported operations are 'add', 'subtract', 'multiply', 'divide'.
+
+
+Task 10: Calculate Total Score
+Write a JavaScript function that takes an array of objects, where each object contains a property 
+score, and uses the forEach method to calculate the total score of all the objects in the array. 
+Return the total score as the output.
+
+function calculateTotalScore(objects) {
+    let totalScore = 0;
+    
+    // Iterate over each object using forEach
+    objects.forEach(obj => {
+        // Add the score of each object to the total score
+        totalScore += obj.score;
+    });
+    
+    return totalScore;
+}
+
+// Example usage:
+let scores = [
+    { score: 80 },
+    { score: 65 },
+    { score: 90 },
+    { score: 75 }
+];
+
+let totalScore = calculateTotalScore(scores);
+console.log("Total Score:", totalScore); // Output: Total Score: 310
